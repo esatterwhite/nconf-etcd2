@@ -15,6 +15,9 @@
     "etcd2",
     "nconf"
   ],
+  "engines":{
+    "node":">=0.12.0"
+  },
   "author": "Eric Satterwhite <esatterwhite@wi.rr.com>",
   "license": "MIT",
   "bugs": {
