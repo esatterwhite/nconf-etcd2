@@ -1,5 +1,10 @@
 # nconf-etcd2
+```
+npm install nconf-etcd2 --save
+```
+
 An ETCD2 backend for nconf
+
 
 ```javascript
 Store = require('nconf-etcd2')
