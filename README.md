@@ -27,3 +27,14 @@ var Etcd  = require('nconf-etcd2'); // tries to attach to the nconf instance
 nconf.use('etcd', { /* options */ });
 nconf.load(console.log);
 ```
+
+### Support For Syncronous Methods
+```
+var nconf = require('nconf');
+var Etcd  = require('nconf-etcd2'); // tries to attach to the nconf instance
+
+nconf.use('etcd', { namespace:'test'});
+nconf.load();
+nconf.set( 'a:b:c', 1);
+nconf.save(); // Saveed to etc!
+```
