@@ -1,6 +1,8 @@
 # nconf-etcd2
+An nconf bacckend store for [Etcd2](https://coreos.com/etcd/)
+
 ```
-npm install nconf-etcd2 --save
+npm install nconf-etcd2 --savej
 ```
 
 An ETCD2 backend for nconf
