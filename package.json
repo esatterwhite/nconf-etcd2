@@ -24,8 +24,12 @@
     "url": "https://github.com/esatterwhite/nconf-etcd2/issues"
   },
   "homepage": "https://github.com/esatterwhite/nconf-etcd2#readme",
+  "bunldedDependencies":[
+  	"aync",
+	"mout",
+	"flat"
+  ],
   "devDependencies": {
-    "co": "^4.6.0",
     "mocha": "^2.3.3",
     "nconf": "^0.8.2"
   },
