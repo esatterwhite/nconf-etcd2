@@ -1,0 +1,33 @@
+{
+  "name": "nconf-etcd2",
+  "version": "1.0.0",
+  "description": "An Etcd2 backend for nconf",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "node script/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/esatterwhite/nconf-etcd2.git"
+  },
+  "keywords": [
+    "etcd",
+    "etcd2",
+    "nconf"
+  ],
+  "author": "Eric Satterwhite <esatterwhite@wi.rr.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/esatterwhite/nconf-etcd2/issues"
+  },
+  "homepage": "https://github.com/esatterwhite/nconf-etcd2#readme",
+  "devDependencies": {
+    "co": "^4.6.0",
+    "mocha": "^2.3.3",
+    "nconf": "^0.8.2"
+  },
+  "dependencies": {
+    "mout": "^0.11.0",
+    "node-etcd": "^4.2.1"
+  }
+}
