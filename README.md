@@ -1,5 +1,5 @@
 # nconf-etcd2
-An nconf bacckend store for [Etcd2](https://coreos.com/etcd/)
+An nconf backend store for [Etcd2](https://coreos.com/etcd/)
 
 ```
 npm install nconf-etcd2 --savej
