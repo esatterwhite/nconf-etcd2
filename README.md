@@ -1,2 +1,29 @@
 # nconf-etcd2
 An ETCD2 backend for nconf
+
+```javascript
+Store = require('nconf-etcd2')
+var s = new Store({namespace:'test'});
+
+s.load(function(err,data){
+	assert.equal( err, null )
+	s.set('a:b:c:d',2);
+	s.save(function( err ){
+		s.store = {};
+
+		s.load( function(e,d){
+			assert.equal( 2,~~s.get('a:b:c:d') );
+			done();
+		})
+	})
+});
+```
+
+### Usage with nconf
+```
+var nconf = require('nconf');
+var Etcd  = require('nconf-etcd2'); // tries to attach to the nconf instance
+
+nconf.use('etcd', { /* options */ });
+nconf.load(console.log);
+```
