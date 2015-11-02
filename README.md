@@ -28,7 +28,7 @@ s.load(function(err,data){
 ```
 
 ### Usage with nconf
-```
+```javascript
 var nconf = require('nconf');
 var Etcd  = require('nconf-etcd2'); // tries to attach to the nconf instance
 
@@ -37,7 +37,7 @@ nconf.load(console.log);
 ```
 
 ### Support For Syncronous Methods
-```
+```javascript
 var nconf = require('nconf');
 var Etcd  = require('nconf-etcd2'); // tries to attach to the nconf instance
 
