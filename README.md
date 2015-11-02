@@ -2,15 +2,16 @@
 An nconf backend store for [Etcd2](https://coreos.com/etcd/)
 
 ```
-npm install nconf-etcd2 --savej
+npm install nconf-etcd2 --save
 ```
 
 An ETCD2 backend for nconf
 
 
 ```javascript
-Store = require('nconf-etcd2')
+var Store = require('nconf-etcd2')
 var s = new Store({namespace:'test'});
+var assert = require('assert')
 
 s.load(function(err,data){
 	assert.equal( err, null )
@@ -21,8 +22,8 @@ s.load(function(err,data){
 		s.load( function(e,d){
 			assert.equal( 2,~~s.get('a:b:c:d') );
 			done();
-		})
-	})
+		});
+	});
 });
 ```
 
@@ -43,5 +44,5 @@ var Etcd  = require('nconf-etcd2'); // tries to attach to the nconf instance
 nconf.use('etcd', { namespace:'test'});
 nconf.load();
 nconf.set( 'a:b:c', 1);
-nconf.save(); // Saveed to etc!
+nconf.save(); // Saved to etc!
 ```
