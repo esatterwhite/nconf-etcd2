@@ -41,7 +41,7 @@ nconf.load(console.log);
 var nconf = require('nconf');
 var Etcd  = require('nconf-etcd2'); // tries to attach to the nconf instance
 
-nconf.use('etcd', { namespace:'test'});
+nconf.use('etcd', { namespace:'test', hosts:['192.168.0.1:4001', '10.50.5.1:4001']});
 nconf.load();
 nconf.set( 'a:b:c', 1);
 nconf.save(); // Saved to etc!
