@@ -30,7 +30,7 @@
     "flat"
   ],
   "peerDependencies": {
-    "nconf": "^0.8.2"
+    "nconf": ">=0.8.0"
   },
   "devDependencies": {
     "mocha": "^2.3.3",
