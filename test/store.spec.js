@@ -24,12 +24,12 @@ describe('nconf-etcd2', function(){
 			var namestore;
 
 			namestore = new Store({namespace:'foo/bar'});
-			store.set('a:b:c', 3);
-			store.saveSync();
+			namestore.set('a:b:c', 3);
+			namestore.saveSync();
 
 			namestore = new Store({namespace:'foo/bar'});
 			namestore.loadSync();
-			assert.equal( store.get('a:b:c'), 3);
+			assert.equal( namestore.get('a:b:c'), 3);
 			done();
 		})
 	});
