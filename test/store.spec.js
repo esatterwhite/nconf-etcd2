@@ -34,9 +34,10 @@ describe('nconf-etcd2', function(){
 		})
 	});
 	describe('#load', function(){
-		it('should set a value', function( done ){
+		it('should load a value', function( done ){
 			var s = new Store({namespace:'test'});
 			s.load( function(err, data ){
+				console.log( s.store );
 				assert.equal( s.store.a.b.c.d, 1)
 				done();
 			})
@@ -64,7 +65,7 @@ describe('nconf-etcd2', function(){
 
 		it('should deal with structural changes', function( done ){
 
-			s = new Store({namespace:'test'});
+			var s = new Store({namespace:'test'});
 			s.load(function( err, data ){
 				s.set('a:b', 4);
 				s.save( function( ){
