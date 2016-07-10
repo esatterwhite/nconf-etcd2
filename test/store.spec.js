@@ -20,24 +20,77 @@ describe('nconf-etcd2', function(){
 	})
 
 	describe('namespaces', function(){
-		it('should allow for a nested name spaces', function( done ){
-			var namestore;
+		describe('sync', function( ){
+			it('should allow for a nested name spaces', function( done ){
+				var namestore;
 
-			namestore = new Store({namespace:'foo/bar'});
-			namestore.set('a:b:c', 3);
-			namestore.saveSync();
+				namestore = new Store({namespace:'foo/bar'});
+				namestore.set('a:b:c', 3);
+				namestore.saveSync();
 
-			namestore = new Store({namespace:'foo/bar'});
-			namestore.loadSync();
-			assert.equal( namestore.get('a:b:c'), 3);
-			done();
-		})
+				namestore = new Store({namespace:'foo/bar'});
+				namestore.loadSync();
+				assert.equal( namestore.get('a:b:c'), 3);
+				done();
+			});
+
+			it('shyould support custom separators', function( ){
+				var namestore;
+
+				namestore = new Store({namespace:'foo-bar', logicalSeparator:'-'});
+				namestore.set('a-b-c', 3);
+				namestore.saveSync();
+
+				namestore = new Store({namespace:'foo-bar'});
+				namestore.loadSync();
+				assert.equal( namestore.get('a-b-c'), 3);
+			})
+		});
+
+		describe('async', function(){
+			it('should allow for a nested name spaces', function( done ){
+				var namestore;
+
+				namestore = new Store({namespace:'foo/bar'});
+				namestore.store = {};
+
+				namestore.load(function(){
+					assert.equal( namestore.get('a:b:c'), 3);
+					namestore.set('a:b:c', 5)
+					namestore.save(function( err ){
+						namestore.store = {};
+						namestore.load(function(){
+							assert.equal( namestore.get('a:b:c'),5);
+							done();
+						});
+					})
+				})
+			});
+
+			it('should allow for customer separators', function( done ){
+				var namestore;
+
+				namestore = new Store({namespace:'foo-bar', logicalSeparator:'-'});
+				namestore.store = {};
+
+				namestore.load(function(){
+					assert.equal( namestore.get('a-b-c'), 3);
+					namestore.set('a-b-c', 5)
+					namestore.save(function( err ){
+						namestore.store = {};
+						namestore.load(function(){
+							assert.equal( namestore.get('a-b-c'),5);
+							done();
+						});
+					})
+				})
+			});
+		});
 	});
 	describe('#load', function(){
 		it('should load a value', function( done ){
 			var s = new Store({namespace:'test'});
 			s.load( function(err, data ){
-				console.log( s.store );
 				assert.equal( s.store.a.b.c.d, 1)
 				done();
 			})
@@ -46,7 +99,7 @@ describe('nconf-etcd2', function(){
 	})
 
 	describe('#save', function( ){
-		it('should write persistanve values', function( done ){
+		it('should write values to etcd', function( done ){
 			var s = new Store({namespace:'test'});
 
 			s.load(function(err,data){
