@@ -1,3 +1,5 @@
+'use strict';
+
 var Store = require('../')
 var assert = require('assert')
 describe('nconf-etcd2', function(){
@@ -17,6 +19,20 @@ describe('nconf-etcd2', function(){
 		store.save( done )
 	})
 
+	describe('namespaces', function(){
+		it('should allow for a nested name spaces', function( done ){
+			var namestore;
+
+			namestore = new Store({namespace:'foo/bar'});
+			store.set('a:b:c', 3);
+			store.saveSync();
+
+			namestore = new Store({namespace:'foo/bar'});
+			namestore.loadSync();
+			assert.equal( store.get('a:b:c'), 3);
+			done();
+		})
+	});
 	describe('#load', function(){
 		it('should set a value', function( done ){
 			var s = new Store({namespace:'test'});
