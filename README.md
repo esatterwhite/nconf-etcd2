@@ -1,6 +1,6 @@
-# nconf-etcd2
-An nconf backend store for [Etcd2](https://coreos.com/etcd/) [![Build Status](https://travis-ci.org/esatterwhite/nconf-etcd2.svg?branch=master)](https://travis-ci.org/esatterwhite/nconf-etcd2)
+# nconf-etcd2 [![Build Status](https://travis-ci.org/esatterwhite/nconf-etcd2.svg?branch=master)](https://travis-ci.org/esatterwhite/nconf-etcd2)
 
+An nconf backend store for [Etcd2](https://coreos.com/etcd/)
 ```
 npm install nconf-etcd2 --save
 ```
