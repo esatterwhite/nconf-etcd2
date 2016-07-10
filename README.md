@@ -36,6 +36,7 @@ nconf.use('etcd', { /* options */ });
 nconf.load(console.log);
 ```
 
+
 ### Support For Syncronous Methods
 ```javascript
 var nconf = require('nconf');
@@ -44,5 +45,32 @@ var Etcd  = require('nconf-etcd2'); // tries to attach to the nconf instance
 nconf.use('etcd', { namespace:'test', hosts:['192.168.0.1:4001', '10.50.5.1:4001']});
 nconf.load();
 nconf.set( 'a:b:c', 1);
+nconf.save(); // Saved to etc!
+```
+
+### Nest Namespaces
+
+```javascript
+var nconf = require('nconf');
+var Etcd  = require('nconf-etcd2'); // tries to attach to the nconf instance
+
+nconf.use('etcd', { namespace:'test:foo', hosts:['192.168.0.1:4001', '10.50.5.1:4001']});
+nconf.load();
+
+nconf.get( 'a:b:c');
+nconf.save(); // Saved to etc!
+```
+
+
+### Custom Separators
+
+```javascript
+
+var nconf = require('nconf');
+var Etcd  = require('nconf-etcd2'); // tries to attach to the nconf instance
+
+nconf.use('etcd', { namespace:'test-nested', logicalSeparator:'-' hosts:['192.168.0.1:4001', '10.50.5.1:4001']});
+nconf.load();
+nconf.set( 'a-b-c', 1);
 nconf.save(); // Saved to etc!
 ```
