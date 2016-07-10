@@ -23,7 +23,6 @@ describe('nconf-etcd2', function(){
 		describe('sync', function( ){
 			it('should allow for a nested name spaces', function( done ){
 				var namestore;
-
 				namestore = new Store({namespace:'foo/bar'});
 				namestore.set('a:b:c', 3);
 				namestore.saveSync();
@@ -34,6 +33,17 @@ describe('nconf-etcd2', function(){
 				done();
 			});
 
+			it('should support the default separator when not specified', function(){
+				var namestore;
+				namestore = new Store({namespace:'foo:bar'});
+				namestore.set('a:b:c', 10 );
+				namestore.saveSync();
+
+				namestore = new Store({namespace:'foo:bar'});
+				namestore.loadSync();
+				assert.equal( namestore.get('a:b:c'), 10);
+			})
+
 			it('shyould support custom separators', function( ){
 				var namestore;
 
@@ -41,10 +51,10 @@ describe('nconf-etcd2', function(){
 				namestore.set('a-b-c', 3);
 				namestore.saveSync();
 
-				namestore = new Store({namespace:'foo-bar'});
+				namestore = new Store({namespace:'foo-bar', logicalSeparator:'-'});
 				namestore.loadSync();
 				assert.equal( namestore.get('a-b-c'), 3);
-			})
+			});
 		});
 
 		describe('async', function(){
@@ -74,12 +84,12 @@ describe('nconf-etcd2', function(){
 				namestore.store = {};
 
 				namestore.load(function(){
-					assert.equal( namestore.get('a-b-c'), 3);
-					namestore.set('a-b-c', 5)
+					assert.equal( namestore.get('a-b-c'), 5);
+					namestore.set('a-b-c', 3)
 					namestore.save(function( err ){
 						namestore.store = {};
 						namestore.load(function(){
-							assert.equal( namestore.get('a-b-c'),5);
+							assert.equal( namestore.get('a-b-c'),3);
 							done();
 						});
 					})
