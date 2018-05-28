@@ -2,7 +2,7 @@
 
 An nconf backend store for [Etcd2](https://coreos.com/etcd/)
 ```
-npm install nconf-etcd2 --save
+npm install nconf nconf-etcd2 --save
 ```
 
 An ETCD2 backend for nconf
