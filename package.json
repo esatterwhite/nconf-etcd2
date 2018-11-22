@@ -1,6 +1,6 @@
 {
   "name": "nconf-etcd2",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "An Etcd2 backend for nconf",
   "main": "lib/index.js",
   "scripts": {
